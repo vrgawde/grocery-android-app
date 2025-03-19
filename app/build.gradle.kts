@@ -91,6 +91,9 @@ dependencies {
 
     // Timber
     implementation(libs.timber)
+
+    // Constraint Layout
+    implementation(libs.androidx.constraintlayout.compose)
 }
 
 kapt {
