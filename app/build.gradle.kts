@@ -23,8 +23,12 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("Boolean", "DEBUG", "true")
+        }
         release {
             isMinifyEnabled = false
+            buildConfigField("Boolean", "DEBUG", "false")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -40,6 +44,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true // Enable BuildConfig generation
     }
 }
 
@@ -62,9 +67,30 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:2.51.1")
+    implementation(libs.hilt.android)
     // Kotlin kapt
-    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+    kapt(libs.hilt.android.compiler)
+
+    // retrofit
+    implementation(libs.retrofit)
+
+    // kotlinx serialization
+    implementation(libs.kotlinx.serialization.json)
+
+    // coroutines
+    implementation(libs.kotlinx.coroutines.android)
+
+    // Jetpack Compose integration
+    implementation(libs.androidx.navigation.compose)
+
+    // Testing Navigation
+    androidTestImplementation(libs.androidx.navigation.testing)
+
+    // datastore
+    implementation(libs.androidx.datastore.preferences)
+
+    // Timber
+    implementation(libs.timber)
 }
 
 kapt {
